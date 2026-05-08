@@ -7,7 +7,11 @@ from machine import Pin
 
 
 # File name of the script to import
+<<<<<<< HEAD
 file_name = "v02"
+=======
+file_name = "I2C_module"
+>>>>>>> 8a6c951 (tutorial)
 
 SCRIPT_DIRECTORY = "/py_scripts"
 CONTEXT_RADIUS = 2
