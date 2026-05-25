@@ -7,7 +7,7 @@ from machine import Pin
 
 # File name of the script to import
 
-file_name = "v03"
+file_name = "v04"
 
 
 SCRIPT_DIRECTORY = "/py_scripts"
