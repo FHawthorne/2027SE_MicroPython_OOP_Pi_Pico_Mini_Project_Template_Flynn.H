@@ -1,9 +1,25 @@
-from audio_notification import Audio_Notification
+from lib.audio_notification import Audio_Notification
+from time import sleep
+
+buzzer = Audio_Notification(27, debug=True)
 
 
-def test_audio():
-    audio = Audio_Notifaction(27)
-    audio.warning_on()
-    print("Audio notification")
+print("Testing beep()")
 
-    test_audio()
+buzzer.beep(freq=1000, duration=200)
+
+print("Did you hear a beep? (Check your buzzer)")
+
+print("Test warning_on() (should beep every ~0.5s for 2 seconds)")
+start = buzzer.__last_toggle_time
+for _ in range(5):
+    buzzer.warning_on()
+    sleep(1)
+
+print("Testing warning_off() (should silence the buzzer)")
+
+buzzer.warning_off()
+
+print("Buzzer should now be off.")
+
+print("Manual test complete.")
