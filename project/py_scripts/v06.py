@@ -1,7 +1,7 @@
-from lib.audio_notification import Audio_Notification
+from lib.audio_notification import AudioNotification
 from time import sleep
 
-buzzer = Audio_Notification(27, debug=True)
+buzzer = AudioNotification(27, debug=True)
 
 
 print("Testing beep()")

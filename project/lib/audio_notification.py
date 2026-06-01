@@ -2,7 +2,7 @@ from machine import Pin, PWM
 from time import sleep, time
 
 
-class Audio_Notification(PWM):
+class AudioNotification(PWM):
     def __init__(self, pin, debug=False):
         super().__init__(Pin(pin))
         self.__debug = debug

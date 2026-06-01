@@ -2,7 +2,7 @@ from machine import Pin
 from time import sleep, time
 
 
-class Led_Light(Pin):
+class LedLight(Pin):
     """
     simple class to turn an led on or off on a rasberry pico.
 
