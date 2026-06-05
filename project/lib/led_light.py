@@ -84,6 +84,9 @@ class LedLight(Pin):
         # Non-blocking flash: toggles LED every 0.05s for the given duration
 
         """Flash the LED on and off every 0.5s if flashing is enabled"""
+        if not self.__flashing:
+            return
+
         now = time()
         if self.__flashing and now - self.__last_toggle_time >= 0.5:
             self.toggle()

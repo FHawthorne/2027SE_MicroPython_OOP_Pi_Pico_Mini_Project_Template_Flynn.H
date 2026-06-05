@@ -1,10 +1,12 @@
 from lib.led_light import LedLight
 from lib.controller import TrafficLightSubsystem
+from lib.controller import PedestrianLightSubsystem
 from time import sleep
 
 red = LedLight(3, False, True)
 amber = LedLight(5, False, True)
 green = LedLight(6, False, True)
+
 
 light = TrafficLightSubsystem(red, amber, green, True)
 
