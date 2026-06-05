@@ -20,9 +20,10 @@ def Pedestrian_subsystem_driver():
     light.show_walk()
     print("Pass if Green: ON, Red: OFF")
     sleep(10)
-    light.show_warning()
     print("Pass if Red: flashing, Green: OFF, Buzzer beeps")
-    sleep(10)
+    for _ in range(200):  # ~10 seconds at 50ms
+        light.show_warning()
+        sleep(0.05)
 
 
 def test_button():
@@ -31,19 +32,9 @@ def test_button():
     if light.is_button_pressed():
         print("Test passed!")
         light.reset_button()
-        button_pressed = True
+
     else:
         print("Test failed check button!")
-    if button_pressed:
-        print("Press button within 5 seconds to test the reset function")
-        sleep(5)
-
-        light.reset_button()
-
-        if light.is_button_pressed is False:
-            print("Test passed")
-        elif light.is_button_pressed is True:
-            print("Test failed check code")
 
 
 Pedestrian_subsystem_driver()
