@@ -3,6 +3,7 @@ from lib.controller import PedestrianLightSubsystem
 from lib.pedestrian_button import PedestrianButton
 from lib.audio_notification import AudioNotification
 from time import sleep
+from time import time
 
 red = LedLight(19, True, True)
 green = LedLight(17, False, True)
@@ -21,9 +22,12 @@ def Pedestrian_subsystem_driver():
     print("Pass if Green: ON, Red: OFF")
     sleep(10)
     print("Pass if Red: flashing, Green: OFF, Buzzer beeps")
-    for _ in range(200):  # ~10 seconds at 50ms
+
+    warning_start = time()
+    while time() - warning_start < 10:
         light.show_warning()
         sleep(0.05)
+    print("Pass if: Ped Red FLASHING, Ped Green OFF & Buzzer OFF")
 
 
 def test_button():

@@ -90,7 +90,7 @@ class Controller:
         )
         self.__debug = debug
         self.state = "IDLE"
-        self.last_state_change = time()
+        self.__last_state_change = time()
 
     def set_idle_state(self):
         if self.__debug:
@@ -118,3 +118,40 @@ class Controller:
 
     def error_state(self):
         return None
+
+    def update(self):
+        current_time = time()
+        elapsed = current_time - self.__last_state_change
+
+        if self.state == "IDLE":
+            if self.__pedestrian_signals.is_button_pressed() and elapsed > 5:
+                self.state = "CHANGE"
+                self.__last_state_change = current_time
+            if self.__debug:
+                print("Switching to CHANGE")
+            self.set_idle_state()
+
+        elif self.state == "CHANGE":
+            if elapsed > 5:
+                self.state = "WALK"
+                self.__last_state_change = current_time
+                if self.__debug:
+                    print("Switching to WALK")
+            self.set_change_state()
+
+        elif self.state == "WALK":
+            if elapsed > 5:
+                self.state = "WALK_WARNING"
+                self.__last_state_change = current_time
+                if self.__debug:
+                    print("Switching to WALK WARNING")
+            self.set_walk_state()
+
+        elif self.state == "WALK_WARNING":
+            if elapsed > 5:
+                self.state = "IDLE"
+                self.__last_state_change = current_time
+                self.__pedestrian_signals.reset_button()
+                if self.__debug:
+                    print("Returning to IDLE")
+            self.set_warning_state()
